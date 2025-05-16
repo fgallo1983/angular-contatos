@@ -1,0 +1,14 @@
+<h2>Novo Contato</h2>
+
+<form (ngSubmit)="onSubmit()">
+  <label>Nome:</label>
+  <input type="text" [(ngModel)]="contact.name" name="name" required />
+
+  <label>Email:</label>
+  <input type="email" [(ngModel)]="contact.email" name="email" required />
+
+  <label>Telefone:</label>
+  <input type="text" [(ngModel)]="contact.phone" name="phone" required />
+
+  <button type="submit">Salvar</button>
+</form>
