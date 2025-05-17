@@ -17,20 +17,20 @@ export class ContactService {
   }
 
   addContact(contact: Contact): void {
-    contact.id = Date.now(); // Gera um ID único simples
+    contact.id = Date.now();
     this.contacts.push(contact);
-    this.contactsSubject.next(this.contacts);  // Emite o novo array para os inscritos
+    this.contactsSubject.next([...this.contacts]);  // Notifica atualização
   }
 
   updateContact(updatedContact: Contact): void {
     const index = this.contacts.findIndex(c => c.id === updatedContact.id);
     if (index !== -1) {
       this.contacts[index] = { ...updatedContact };
-      this.contactsSubject.next(this.contacts);  // Emite o array atualizado
+      this.contactsSubject.next([...this.contacts]);  // Notifica atualização
     }
   }
   deleteContact(id: number): void {
-  this.contacts = this.contacts.filter(contact => contact.id !== id);
-  this.contactsSubject.next(this.contacts); // emite a lista atualizada
+    this.contacts = this.contacts.filter(c => c.id !== id);
+    this.contactsSubject.next([...this.contacts]);  // Notifica atualização
 }
 }
