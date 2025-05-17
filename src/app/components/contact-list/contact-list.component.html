@@ -1,20 +1,15 @@
-<h2>Lista de Contatos</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Email</th>
-      <th>Telefone</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let contact of contacts">
-      <td>{{ contact.name }}</td>
-      <td>{{ contact.email }}</td>
-      <td>{{ contact.phone }}</td>
-      <td><button (click)="onEdit(contact)">Editar</button></td>
-      <button (click)="onDelete(contact.id)">Excluir</button>
-    </tr>
-  </tbody>
-</table>
+<div class="contact-list">
+  <h2>Lista de Contatos</h2>
+  <ul>
+    <li *ngFor="let contact of contacts" class="contact-item">
+      <div class="contact-info">
+        <strong>{{ contact.name }}</strong><br>
+        <small>{{ contact.email }} | {{ contact.phone }}</small>
+      </div>
+      <div class="actions">
+        <button (click)="onEdit(contact)" class="btn edit">Editar</button>
+        <button (click)="onDelete(contact.id)" class="btn delete">Excluir</button>
+      </div>
+    </li>
+  </ul>
+</div>

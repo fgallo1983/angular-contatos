@@ -1,14 +1,48 @@
-<h2>Novo Contato</h2>
+<form (ngSubmit)="onSubmit()" class="contact-form">
+  <h2>{{ contactToEdit ? 'Editar Contato' : 'Novo Contato' }}</h2>
 
-<form (ngSubmit)="onSubmit()">
-  <label>Nome:</label>
-  <input type="text" [(ngModel)]="contact.name" name="name" required />
+  <div class="form-group">
+    <label for="name">Nome</label>
+    <input
+      id="name"
+      type="text"
+      [(ngModel)]="contact.name"
+      name="name"
+      required
+      placeholder="Digite o nome"
+    />
+  </div>
 
-  <label>Email:</label>
-  <input type="email" [(ngModel)]="contact.email" name="email" required />
+  <div class="form-group">
+    <label for="email">E-mail</label>
+    <input
+      id="email"
+      type="email"
+      [(ngModel)]="contact.email"
+      name="email"
+      required
+      placeholder="Digite o e-mail"
+    />
+  </div>
 
-  <label>Telefone:</label>
-  <input type="text" [(ngModel)]="contact.phone" name="phone" required />
+  <div class="form-group">
+    <label for="phone">Telefone</label>
+    <input
+      id="phone"
+      type="tel"
+      [(ngModel)]="contact.phone"
+      name="phone"
+      required
+      placeholder="Digite o telefone"
+    />
+  </div>
 
-  <button type="submit">Salvar</button>
+  <div class="buttons">
+    <button type="submit" class="btn btn-primary">
+      {{ contactToEdit ? 'Salvar Alterações' : 'Adicionar Contato' }}
+    </button>
+    <button type="button" class="btn btn-secondary" (click)="clearForm()">
+      Limpar
+    </button>
+  </div>
 </form>

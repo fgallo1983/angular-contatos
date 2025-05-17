@@ -33,4 +33,13 @@ export class ContactFormComponent {
     }
     this.contact = { id: 0, name: '', email: '', phone: '' };
   }
+  clearForm(): void {
+    this.contact = {
+      id: 0,
+      name: '',
+      email: '',
+      phone: ''
+    };
+    this.contactToEdit = null;
+}
 }
