@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
 import { Contact } from '../../models/contact';
 import { ContactService } from '../../services/contact.service';
@@ -14,12 +14,17 @@ export class ContactListComponent implements OnInit {
 
   contacts: Contact[] = [];
 
-  constructor(private contactService: ContactService) { }
+  @Output() edit = new EventEmitter<Contact>();
 
-  ngOnInit(): void {
+  constructor(private contactService: ContactService) {}
+
+  ngOnInit() {
     this.contactService.getContacts().subscribe(data => {
       this.contacts = data;
     });
   }
 
+  onEdit(contact: Contact) {
+    this.edit.emit(contact);
+  }
 }
