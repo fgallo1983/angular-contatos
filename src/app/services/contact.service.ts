@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { Contact } from '../models/contact';
 
 @Injectable({
@@ -9,6 +9,10 @@ import { Contact } from '../models/contact';
 export class ContactService {
   private apiUrl = 'https://reqres.in/api/users';
   private apiKey = 'reqres-free-v1';
+
+  private contacts: Contact[] = [];
+  private contactsSubject = new BehaviorSubject<Contact[]>([]);
+  contacts$ = this.contactsSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -19,20 +23,38 @@ export class ContactService {
       map(response =>
         response.data.map((user: any) => ({
           id: user.id,
-          name: `${user.first_name} ${user.last_name}`,
+          first_name: user.first_name,
+          last_name: user.last_name,
           email: user.email,
           avatar: user.avatar,
         }))
-      )
+      ),
+      map(mappedContacts => {
+        this.contacts = mappedContacts;
+        this.contactsSubject.next(this.contacts);
+        return mappedContacts;
+      })
+    );
+  }
+
+  addContact(contact: Contact): Observable<Contact> {
+    const newContact = {
+      ...contact,
+      id: Date.now(), // ID fake já que a API não salva
+    };
+
+    // Simula POST
+    return this.http.post<Contact>(this.apiUrl, newContact, {
+      headers: { 'x-api-key': this.apiKey },
+    }).pipe(
+      map(() => {
+        this.contacts.push(newContact);
+        this.contactsSubject.next([...this.contacts]);
+        return newContact;
+      })
     );
   }
 }
-
-//   addContact(contact: Contact): void {
-//     contact.id = Date.now();
-//     this.contacts.push(contact);
-//     this.contactsSubject.next([...this.contacts]);  // Notifica atualização
-//   }
 
 //   updateContact(updatedContact: Contact): void {
 //     const index = this.contacts.findIndex(c => c.id === updatedContact.id);

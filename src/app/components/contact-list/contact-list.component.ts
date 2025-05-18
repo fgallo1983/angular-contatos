@@ -18,11 +18,12 @@ export class ContactListComponent implements OnInit {
 
   constructor(private contactService: ContactService) {}
 
-  ngOnInit() {
-    this.contactService.getContacts().subscribe(data => {
-      this.contacts = data;
-    });
-  }
+ngOnInit() {
+  this.contactService.getContacts().subscribe(); // inicializa a lista
+  this.contactService.contacts$.subscribe(updated => {
+    this.contacts = updated;
+  });
+}
 
   onEdit(contact: Contact) {
     this.edit.emit(contact);

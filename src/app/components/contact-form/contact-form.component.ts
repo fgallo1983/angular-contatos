@@ -11,7 +11,6 @@ import { ContactService } from '../../services/contact.service';
   templateUrl: './contact-form.component.html',
   styleUrls: ['./contact-form.component.css']
 })
-
 export class ContactFormComponent {
   @Input() contactToEdit: Contact | null = null;
 
@@ -25,15 +24,12 @@ export class ContactFormComponent {
     }
   }
 
-  // onSubmit() {
-  //   if (this.contact.id) {
-  //     this.contactService.updateContact(this.contact);
-  //   } else {
-  //     this.contactService.addContact(this.contact);
-  //   }
-  //   this.clearForm();
-  // }
-
+  onSubmit() {
+    this.contactService.addContact(this.contact).subscribe((newContact) => {
+      console.log('Contato adicionado:', newContact);
+      this.clearForm();
+    });
+  }
 
   clearForm(): void {
     this.contact = {

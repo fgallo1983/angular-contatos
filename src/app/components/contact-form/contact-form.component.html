@@ -1,15 +1,27 @@
-<!-- <form (ngSubmit)="onSubmit()" class="contact-form">
+<form (ngSubmit)="onSubmit()" class="contact-form">
   <h2>{{ contactToEdit ? 'Editar Contato' : 'Novo Contato' }}</h2>
 
   <div class="form-group">
-    <label for="name">Nome</label>
+    <label for="first_name">Primeiro Nome</label>
     <input
-      id="name"
+      id="first_name"
       type="text"
-      [(ngModel)]="contact.name"
-      name="name"
+      [(ngModel)]="contact.first_name"
+      name="first_name"
       required
-      placeholder="Digite o nome"
+      placeholder="Digite o primeiro nome"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="last_name">Sobrenome</label>
+    <input
+      id="last_name"
+      type="text"
+      [(ngModel)]="contact.last_name"
+      name="last_name"
+      required
+      placeholder="Digite o sobrenome"
     />
   </div>
 
@@ -26,14 +38,14 @@
   </div>
 
   <div class="form-group">
-    <label for="phone">Telefone</label>
+    <label for="avatar">Avatar (URL da imagem)</label>
     <input
-      id="phone"
-      type="tel"
-      [(ngModel)]="contact.phone"
-      name="phone"
+      id="avatar"
+      type="url"
+      [(ngModel)]="contact.avatar"
+      name="avatar"
       required
-      placeholder="Digite o telefone"
+      placeholder="Cole a URL do avatar"
     />
   </div>
 
@@ -45,4 +57,4 @@
       Limpar
     </button>
   </div>
-</form> -->
+</form>
