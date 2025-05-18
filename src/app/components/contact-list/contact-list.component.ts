@@ -28,7 +28,12 @@ ngOnInit() {
   onEdit(contact: Contact) {
     this.edit.emit(contact);
   }
-//   onDelete(id: number): void {
-//   this.contactService.deleteContact(id);
-// }
+
+  onDelete(contact: Contact): void {
+    if (confirm(`Tem certeza que deseja excluir ${contact.first_name}?`)) {
+      this.contactService.deleteContact(contact.id).subscribe(() => {
+        this.contacts = this.contacts.filter(c => c.id !== contact.id);
+      });
+    }
+}
 }

@@ -61,4 +61,10 @@ export class ContactService {
       this.contactsSubject.next([...this.contacts]);
     }
   }
+  deleteContact(id: number): Observable<void> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete<void>(url, {
+      headers: { 'x-api-key': this.apiKey },
+    });
+  }
 }
