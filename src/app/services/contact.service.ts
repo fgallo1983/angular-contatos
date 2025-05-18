@@ -54,18 +54,11 @@ export class ContactService {
       })
     );
   }
+    updateContact(updated: Contact): void {
+    const index = this.contacts.findIndex(c => c.id === updated.id);
+    if (index !== -1) {
+      this.contacts[index] = { ...updated };
+      this.contactsSubject.next([...this.contacts]);
+    }
+  }
 }
-
-//   updateContact(updatedContact: Contact): void {
-//     const index = this.contacts.findIndex(c => c.id === updatedContact.id);
-//     if (index !== -1) {
-//       this.contacts[index] = { ...updatedContact };
-//       this.contactsSubject.next([...this.contacts]);  // Notifica atualização
-//     }
-//   }
-//   deleteContact(id: number): void {
-//     this.contacts = this.contacts.filter(c => c.id !== id);
-//     this.contactsSubject.next([...this.contacts]);  // Notifica atualização
-// }
-// }
-

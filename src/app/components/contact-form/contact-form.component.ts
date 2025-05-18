@@ -25,10 +25,15 @@ export class ContactFormComponent {
   }
 
   onSubmit() {
-    this.contactService.addContact(this.contact).subscribe((newContact) => {
-      console.log('Contato adicionado:', newContact);
-      this.clearForm();
-    });
+    if (this.contact.id) {
+      this.contactService.updateContact(this.contact);
+    } else {
+      this.contactService.addContact(this.contact).subscribe((newContact) => {
+        console.log('Contato adicionado:', newContact);
+      });
+    }
+
+    this.clearForm();
   }
 
   clearForm(): void {
