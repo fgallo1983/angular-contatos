@@ -15,7 +15,7 @@ import { ContactService } from '../../services/contact.service';
 export class ContactFormComponent {
   @Input() contactToEdit: Contact | null = null;
 
-  contact: Contact = { id: 0, name: '', email: '', phone: '' };
+  contact: Contact = { id: 0, first_name: '', last_name: '', email: '', avatar: '' };
 
   constructor(private contactService: ContactService) {}
 
@@ -25,21 +25,24 @@ export class ContactFormComponent {
     }
   }
 
-  onSubmit() {
-    if (this.contact.id) {
-      this.contactService.updateContact(this.contact);
-    } else {
-      this.contactService.addContact(this.contact);
-    }
-    this.contact = { id: 0, name: '', email: '', phone: '' };
-  }
+  // onSubmit() {
+  //   if (this.contact.id) {
+  //     this.contactService.updateContact(this.contact);
+  //   } else {
+  //     this.contactService.addContact(this.contact);
+  //   }
+  //   this.clearForm();
+  // }
+
+
   clearForm(): void {
     this.contact = {
       id: 0,
-      name: '',
+      first_name: '',
+      last_name: '',
       email: '',
-      phone: ''
+      avatar: ''
     };
     this.contactToEdit = null;
-}
+  }
 }
