@@ -3,7 +3,7 @@
   <ul>
     <li *ngFor="let contact of contacts" class="contact-item">
       <div class="contact-info">
-        <img [src]="contact.avatar" alt="{{ contact.first_name  }}" class="avatar" />
+        <img class="avatar" [src]="contact.avatar" alt="{{contact.first_name}} {{contact.last_name}}">
         <strong>{{ contact.first_name }} {{ contact.last_name }}</strong><br>
         <small>{{ contact.email }}</small>
       </div>

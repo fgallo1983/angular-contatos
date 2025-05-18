@@ -21,22 +21,12 @@ export class ContactService {
           id: user.id,
           name: `${user.first_name} ${user.last_name}`,
           email: user.email,
-          photo: user.avatar,  
+          avatar: user.avatar,
         }))
       )
     );
   }
 }
-// export class ContactService {
-//   private contacts: Contact[] = [
-//     { id: 1, name: 'João Silva', email: 'joao@email.com', phone: '11999999999' }
-//   ];
-
-//   private contactsSubject = new BehaviorSubject<Contact[]>(this.contacts);
-
-//   getContacts(): Observable<Contact[]> {
-//     return this.contactsSubject.asObservable();
-//   }
 
 //   addContact(contact: Contact): void {
 //     contact.id = Date.now();

@@ -27,7 +27,7 @@ export class ContactListComponent implements OnInit {
   onEdit(contact: Contact) {
     this.edit.emit(contact);
   }
-  onDelete(id: number): void {
-  this.contactService.deleteContact(id);
-}
+//   onDelete(id: number): void {
+//   this.contactService.deleteContact(id);
+// }
 }
